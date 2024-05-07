@@ -23,3 +23,10 @@
   border-radius: 25px;
   border-color: rgb(55, 9, 128);
 }
+
+.vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
