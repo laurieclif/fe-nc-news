@@ -7,18 +7,24 @@ import { Link } from "react-router-dom"
 function ArticleList() {
 
     const [articles, setArticles] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        fetchArticleData().then((articleData) => {
-            setArticles(articleData.data.articles)
+        setIsLoading(true)
+        fetchArticleData().then((res) => {
+            setArticles(res.data.articles)
+        })
+        .then(() => {
+            setIsLoading(false)
         })
         .catch((err) => console.log(err))
     }, [])
 
-    return (
-        <section id="article-list">
+    return isLoading? (
+        <p>Loading...</p> ) : (
+        <section id="vertical-list">
             <h2>Articles</h2>
-            <ul id="article-list">
+            <ul id="vertical-list">
                 {articles.map((article) => {
                     return (
                         <>

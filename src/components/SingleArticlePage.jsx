@@ -18,6 +18,8 @@ function SingleArticlePage() {
         return <p>Loading...</p>
     }
 
+    //pass down article props to comments?
+
     return (
         <section id="single-article">
             <h1>{article.title}</h1>
@@ -26,7 +28,7 @@ function SingleArticlePage() {
             <p>{article.body}</p>
             <p>Written by {article.author}</p>
             <p className="vertical" >{article.votes} votes</p>
-            <Link className="vertical" to={`/articles/${article_id}/comments`} article_id={article_id}>{article.comment_count} comments</Link>
+            <Link className="vertical" to={`/articles/${article_id}/comments`} article={article}>{article.comment_count} comments</Link>
             <p>posted at: {article.created_at}</p>
         </section>
     )
