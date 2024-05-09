@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { fetchArticleData } from "./api"
 import ArticleCard from "./ArticleCard"
 import DisplayBox from "./DisplayBox"
-import { Link } from "react-router-dom"
 
 function ArticleList() {
 
@@ -20,7 +19,7 @@ function ArticleList() {
         .catch((err) => console.log(err))
     }, [])
 
-    return isLoading? (
+    return isLoading ? (
         <p>Loading...</p> ) : (
         <section id="vertical-list">
             <h2>Articles</h2>
