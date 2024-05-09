@@ -4,6 +4,7 @@ import Header from "./components/Header.jsx";
 import HomePage from "./components/HomePage.jsx";
 import ArticleList from "./components/ArticleList.jsx";
 import SingleArticlePage from './components/SingleArticlePage.jsx';
+import TopicList from "./components/TopicList.jsx"
 
 function App() {
 
