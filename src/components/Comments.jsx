@@ -9,12 +9,14 @@ function Comments({article}) {
     const [commentText, setCommentText] = useState("")
     const [newComment, setNewComment] = useState({})
     const [isCommentButtonDisabled, setCommentButtonDisabled] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [refresh, setRefresh] = useState(0)
 
     useEffect(() => {
         fetchCommentsByArticleId(article_id).then((res) => {
             setArticleComments(res.data.comments)
         })
-    }, [article_id])
+    }, [article_id, refresh])
 
     function handleChange(event) {
         setCommentText(event.target.value)
@@ -26,19 +28,25 @@ function Comments({article}) {
 
     function handleSubmit(event) {
         event.preventDefault()
-        postCommentOnArticle(article_id, commentText).then(() => {
+        disableCommentButton()
+        setIsLoading(true)
+        postCommentOnArticle(article_id, commentText)
+        .then(() => {
             setCommentText("")
+            setIsLoading(false)
+            setRefresh(Math.random)
+            setCommentButtonDisabled(false)
             fetchCommentsByArticleId(article_id).then((res) => {
                 setArticleComments(res.data.comments)
             })
-            disableCommentButton()
         })
     }
 
-    return (
+    return isLoading ? (
+        <p>Loading...</p> ) : (
         <section>
             <form className="comment-form" onSubmit={handleSubmit}>
-                <label className="comment-label">comment:</label>
+                <label className="comment-label" htmlFor="comment-body">comment:</label>
                 <input name="body"
                 className="comment-body"
                 type="text"
@@ -52,7 +60,7 @@ function Comments({article}) {
             <ul id="vertical-list">
                 {articleComments.map((comment) => {
                     return (
-                            <CommentCard key={comment.comment_id} comment={comment}/>
+                            <CommentCard key={comment.comment_id} comment={comment} setRefresh={setRefresh} isLoading={isLoading} setIsLoading={setIsLoading}/>
                     )})}
             </ul>
             </section>
