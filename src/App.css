@@ -110,3 +110,16 @@ a:hover {
   border-radius: 25px;
   border-color: rgb(238, 149, 153);
 }
+
+.topic-card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #4f0961;
+    width: 600px;
+    height: 280px;
+    background-color: #da95cc;
+    border-style: solid;
+    border-radius: 25px;
+    border-color: rgb(238, 149, 153);
+}

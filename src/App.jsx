@@ -15,6 +15,8 @@ function App() {
         <Route path="/" element={<HomePage/>}></Route>
         <Route path="/articles" element={<ArticleList/>}></Route>
         <Route path="articles/:article_id" element={<SingleArticlePage/>}></Route>
+        <Route path="/topics" element={<TopicList/>}></Route>
+        <Route path="/topics/:slug/articles" element={<ArticleList/>}></Route>
       </Routes>
     </>
   )
