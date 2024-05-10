@@ -11,7 +11,7 @@ function ArticleCard({article}) {
             <p>Topic: {article.topic}</p>
             <p>Written by {article.author}</p>
             <p>{article.votes} votes</p>
-            <Link className="link" to="/articles/:article_id/comments">{article.comment_count} comments</Link>
+            <p>{article.comment_count} comments</p>
         </section>
         </Link>
         </>

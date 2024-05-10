@@ -1,8 +1,12 @@
 import axios from "axios"
 
-export function fetchArticleData() {
+export function fetchArticleData(slug) {
+    let url = "https://be-nc-news-project.onrender.com/api/articles"
+    if(slug){
+       url += `?topic=${slug}`
+    }
     return axios
-    .get("https://be-nc-news-project.onrender.com/api/articles")
+    .get(url)
 }
 
 export function fetchArticleById(article_id) {
@@ -29,4 +33,9 @@ export function postCommentOnArticle(article_id, commentText) {
 export function deleteCommentFromArticle(comment_id) {
     return axios
     .delete(`https://be-nc-news-project.onrender.com/api/comments/${comment_id}`)
+}
+
+export function fetchTopics() {
+    return axios
+    .get("https://be-nc-news-project.onrender.com/api/topics")
 }

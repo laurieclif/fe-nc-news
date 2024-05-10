@@ -2,22 +2,25 @@ import { useState, useEffect } from "react"
 import { fetchArticleData } from "./api"
 import ArticleCard from "./ArticleCard"
 import DisplayBox from "./DisplayBox"
+import {useParams} from "react-router"
 
 function ArticleList() {
-
+    const {slug} = useParams()
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         setIsLoading(true)
-        fetchArticleData().then((res) => {
+        fetchArticleData(slug).then((res) => {
             setArticles(res.data.articles)
         })
         .then(() => {
             setIsLoading(false)
         })
-        .catch((err) => console.log(err))
-    }, [])
+        .catch((err) => {
+            console.log(err)
+        })
+    }, [slug])
 
     return isLoading ? (
         <p>Loading...</p> ) : (
